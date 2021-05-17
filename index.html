@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    <!--================ BOOTSTRAP STYLE==================== -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <!--================== CUSTOM CSS====================== -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <!-- ==================NAVBAR-SECTION======================= -->
+    <header>
+        <nav class="navbar navbar-expand-lg sticky-top bg-dark">
+            <a class="brand" href="#">SKATER</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+        <span
+          ><img class="mb-1"
+            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDEyNCAxMjQiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTIiIHhtbDpzcGFjZT0icHJlc2VydmUiIGNsYXNzPSIiPjxnPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgoJPHBhdGggZD0iTTExMiw2SDEyQzUuNCw2LDAsMTEuNCwwLDE4czUuNCwxMiwxMiwxMmgxMDBjNi42LDAsMTItNS40LDEyLTEyUzExOC42LDYsMTEyLDZ6IiBmaWxsPSIjZjg4YjAwIiBkYXRhLW9yaWdpbmFsPSIjMDAwMDAwIiBzdHlsZT0iIiBjbGFzcz0iIj48L3BhdGg+Cgk8cGF0aCBkPSJNMTEyLDUwSDEyQzUuNCw1MCwwLDU1LjQsMCw2MmMwLDYuNiw1LjQsMTIsMTIsMTJoMTAwYzYuNiwwLDEyLTUuNCwxMi0xMkMxMjQsNTUuNCwxMTguNiw1MCwxMTIsNTB6IiBmaWxsPSIjZjg4YjAwIiBkYXRhLW9yaWdpbmFsPSIjMDAwMDAwIiBzdHlsZT0iIiBjbGFzcz0iIj48L3BhdGg+Cgk8cGF0aCBkPSJNMTEyLDk0SDEyYy02LjYsMC0xMiw1LjQtMTIsMTJzNS40LDEyLDEyLDEyaDEwMGM2LjYsMCwxMi01LjQsMTItMTJTMTE4LjYsOTQsMTEyLDk0eiIgZmlsbD0iI2Y4OGIwMCIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgc3R5bGU9IiIgY2xhc3M9IiI+PC9wYXRoPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjwvZz48L3N2Zz4="
+        /></span>
+      </button>
+
+            <div class="collapse navbar-collapse menu" id="navbar">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Services</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+              About
+            </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Testimonials</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!--======================== CAROUSEL-SECTION===================== -->
+    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+            <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="/new_skater.png" class="d-block w-100" alt="..." />
+                <div class="carousel-caption d-none d-md-block">
+                    <div class="row">
+                        <div class="col-lg-8 text-align-center mx-auto">
+                            <h1 class="mb-2">NEW GENERATION OF SKATING</h1>
+                            <p>
+                                Nulla vitae elit libero, a pharetra augue mollis interdum.
+                            </p>
+                            <button data-aos="fade-up" data-aos-duration="1000" type="button" class="btn btn-outline-primary">Get In Touch</button>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="/skater-1.png" class="d-block w-100" alt="..." />
+                <div class="carousel-caption d-none d-md-block">
+                    <div class="row">
+                        <div class="col-lg-8 text-align-center mx-auto">
+                            <h1>NEW GENERATION OF SKATING</h1>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            <button data-aos="fade-up" data-aos-duration="1500" type="button" class="btn btn-outline-primary">Get In Touch</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="/New_Skater_NHuston.jpg" class="d-block w-100" alt="..." />
+                <div class="carousel-caption d-none d-md-block">
+                    <div class="row">
+                        <div class="col-lg-8 text-align-center mx-auto">
+                            <h1>NEW GENERATION OF SKATING</h1>
+                            <p>
+                                Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+                            </p>
+                            <button data-aos="fade-up" data-aos-duration="2000" type="button" class="btn btn-outline-primary">Get In Touch</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+    <!--========================= CARD-SECTION============================ -->
+    <section class="card-section">
+        <div data-aos="fade-up" data-aos-duration="1000" class="row">
+            <div class="col-lg-7 text-center mx-auto">
+                <h1>SERVICES</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque sunt assumenda aliquam aperiam, ipsa temporibus deserunt necessitatibus tempora libero error!</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <div data-aos="fade-up" data-aos-duration="500" class="card">
+                    <div class="card-header">
+                        <span><img class="pt-4" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDEyOCAxMjgiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTIiIHhtbDpzcGFjZT0icHJlc2VydmUiIGNsYXNzPSIiPjxnPjxwYXRoIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZD0ibTEyMy4yNDIgMzEuNmEyNi44NTUgMjYuODU1IDAgMCAwIC00NS44NDktMTguOTg2bC0yLjY3MSAyLjY3OGE3Ljc2IDcuNzYgMCAwIDAgLTEwLjM3MS41MzFsLTUuNjU3IDUuNjU3YTcuNzQ4IDcuNzQ4IDAgMCAwIC0uNTM0IDEwLjM2N2wtMjYuMzIgMjYuMzIxYTcuNzYyIDcuNzYyIDAgMCAwIC0xMC4zNjguNTM0bC01LjY1NyA1LjY1N2E3Ljc0OSA3Ljc0OSAwIDAgMCAtLjUzMSAxMC4zNzFsLTIuNjg0IDIuNjdhMjYuODU5IDI2Ljg1OSAwIDAgMCAzNy45ODQgMzcuOTg2bDIuNjgxLTIuNjc1YTcuNzY0IDcuNzY0IDAgMCAwIDEwLjM2NC0uNTM3bDUuNjU3LTUuNjU4YTcuNzQ3IDcuNzQ3IDAgMCAwIC41MzQtMTAuMzY2bDI2LjMyLTI2LjMyMWE3Ljc2NCA3Ljc2NCAwIDAgMCAxMC4zNjgtLjUzNGw1LjY1Ny01LjY1OGE3Ljc0NyA3Ljc0NyAwIDAgMCAuNTM3LTEwLjM2MmwyLjY3My0yLjY4MWEyNi42ODkgMjYuNjg5IDAgMCAwIDcuODY3LTE4Ljk5NHptLTMyLjAyMiAxMC4wMzMtNC44NjItNC44NjEgMS45MjItMi4zMDkgNS4yNDggNS4yNDl6bTYuNjkxIDExLjY0LTEuNzY1IDEuNzY2LTIzLjE5My0yMy4xOTMgMS43NjUtMS43NjV6bS0zMC41NjEgNDAuNDA0YTcuNzM3IDcuNzM3IDAgMCAwIC0xMC4yNjkuNDM3bC02LjY4OC02LjY4NyAzLjUzLTIuOTQ0YTEuNzUgMS43NSAwIDAgMCAuMTE2LTIuNTgxbC03Ljk1LTcuOTQ5YTEuNzUgMS43NSAwIDAgMCAtMi41ODEuMTE2bC0yLjk0MyAzLjUzMS02LjY4Ny02LjY4N2E3Ljc0IDcuNzQgMCAwIDAgLjQzNy0xMC4yNjlsMjYuMzE5LTI2LjMyYTcuNzQ3IDcuNzQ3IDAgMCAwIDkuODE4LS4wMjhsNy4zMjMgNy4zMjMtMi4zNTggMi44MzRhMS43NDggMS43NDggMCAwIDAgLjEwOCAyLjM1Nmw1LjY2IDUuNjYxYTEuNzUxIDEuNzUxIDAgMCAwIDIuMzU3LjEwN2wyLjgzMi0yLjM1OSA3LjMyNiA3LjMyMWE3Ljc0OCA3Ljc0OCAwIDAgMCAtLjAyOCA5LjgxOXptLTE0LjUyNSA0LjY4Mi0yMy4xOTItMjMuMTkzIDEuNzc1LTEuNzc1IDIzLjE5MiAyMy4xOTN6bS0xNS44ODUtMTAuOTM2IDMuNjI5IDMuNjI4LTEuMzQ5IDEuMTIyLTMuNC0zLjR6bTEwLjk2OS0yLjQ4MS00Ljg1OS00Ljg1OSAxLjkxOS0yLjMgNS4yNDEgNS4yNHptMzIuMzUxLTQwLjg0MiAzLjYyOSAzLjYyOS0xLjM1OSAxLjEzNC0zLjQtMy40em0tMTkuMDkxLTIwLjE0NSA1LjY1Ni01LjY1NWE0LjI1NSA0LjI1NSAwIDAgMSA2LjAxMSAwbC42NzEuNjcxLjAwOS4wMS4wMS4wMDkuNjYzLjY2MmE0LjI1MyA0LjI1MyAwIDAgMSAwIDYuMDExbC01LjY1OCA1LjY1NmE0LjI0OSA0LjI0OSAwIDAgMSAtNi4wMSAwbC0xLjM1Mi0xLjM1MmE0LjI0OSA0LjI0OSAwIDAgMSAwLTYuMDF6bS00Mi44NzkgNDIuODc5IDUuNjU2LTUuNjU3YTQuMjU1IDQuMjU1IDAgMCAxIDYuMDExIDBsMS4zNTMgMS4zNTJhNC4yNTMgNC4yNTMgMCAwIDEgMCA2LjAxMWwtNS42NTggNS42NmE0LjI0OCA0LjI0OCAwIDAgMSAtNi4wMSAwbC0uNjY2LS42NjYtLjY3Ni0uNjc1YTQuMjUgNC4yNSAwIDAgMSAwLTYuMDExem0yOS44MjUgNDYuMDc4YTIzLjM1OSAyMy4zNTkgMCAxIDEgLTMzLjAzNy0zMy4wMzNsMi42ODEtMi42NzlhNy43MzggNy43MzggMCAwIDAgOS4zMS4zNDdsNy4zODYgNy4zODctMi4zNDggMi44MjNhMS43NDggMS43NDggMCAwIDAgLjEwOCAyLjM1Nmw1LjY2IDUuNjZhMS43NDkgMS43NDkgMCAwIDAgMi4zNTcuMTA4bDIuODIyLTIuMzQ5IDcuMzg2IDcuMzg3YTcuNzM3IDcuNzM3IDAgMCAwIC4zNTMgOS4zMTd6bTE4LjctOC44NjctNS42NTcgNS42NTVhNC4yNTYgNC4yNTYgMCAwIDEgLTYuMDEgMGwtLjY1OS0uNjU4LS4wMDgtLjAxMS0uMDExLS4wMDktLjY3NS0uNjc1YTQuMjQ5IDQuMjQ5IDAgMCAxIDAtNi4wMWw1LjY1Ny01LjY1N2E0LjI1IDQuMjUgMCAwIDEgNi4wMTEgMGwxLjM1MiAxLjM1M2E0LjI0OSA0LjI0OSAwIDAgMSAwIDYuMDF6bTQyLjg3OS00Mi44NzktNS42NTcgNS42NTdhNC4yNTYgNC4yNTYgMCAwIDEgLTYuMDEgMGwtMS4zNTMtMS4zNTJhNC4yNSA0LjI1IDAgMCAxIDAtNi4wMTFsNS42NTctNS42NTZhNC4yNDcgNC4yNDcgMCAwIDEgNi4wMTEgMGwuNjguNjc5aC4wMDVsLjY2My42NjJhNC4yNSA0LjI1IDAgMCAxIDAgNi4wMTF6bS41MzgtMTAuMzY1YTcuNzQ2IDcuNzQ2IDAgMCAwIC05LjgyLjAyNGwtNi43MDctNi43MDcgMy41MzYtMi45NDNhMS43NDkgMS43NDkgMCAwIDAgLjExOC0yLjU4MmwtNy45Ni03Ljk2YTEuNzQ5IDEuNzQ5IDAgMCAwIC0yLjU4Mi4xMThsLTIuOTQ0IDMuNTM2LTYuNzA2LTYuNzA2YTcuNzUgNy43NSAwIDAgMCAuMDI5LTkuODE0bDIuNjczLTIuNjc5YTIzLjM1OSAyMy4zNTkgMCAwIDEgMzMuMDMxIDMzLjAzNnoiIGZpbGw9IiNmODhiMDAiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIHN0eWxlPSIiIGNsYXNzPSIiPjwvcGF0aD48cGF0aCB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGQ9Im0xMTUuNjIxIDIzLjUxOGExLjc1IDEuNzUgMCAwIDAgLTMuMjI2IDEuMzU4IDE3LjQ0MSAxNy40NDEgMCAwIDEgLTEuMTggMTUuNzYzIDEuNzUgMS43NSAwIDEgMCAyLjk4NSAxLjgyNyAyMC45NCAyMC45NCAwIDAgMCAxLjQyMS0xOC45NDh6IiBmaWxsPSIjZjg4YjAwIiBkYXRhLW9yaWdpbmFsPSIjMDAwMDAwIiBzdHlsZT0iIiBjbGFzcz0iIj48L3BhdGg+PC9nPjwvc3ZnPg=="
+                    /></span>
+                    </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title">SKATE FOR BEGINNER</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur dolores voluptas obcaecati quo consequuntur mollitia facilis.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div data-aos="fade-up" data-aos-duration="1000" class="card">
+                    <div class="card-header">
+                        <span><img class="pt-4"src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTIiIHhtbDpzcGFjZT0icHJlc2VydmUiIGNsYXNzPSIiPjxnPjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgaWQ9Im91dGxpbmUiPjxwYXRoIGQ9Ik0zNi42NjgsMjYzLjI3Myw2OC41OSwyNzcuOWE5Ljg2Myw5Ljg2MywwLDAsMCwxMy44NjctNi43NjVMODUuMzcyLDI2NEg5NmE4LDgsMCwwLDAsOC04VjIzMy4xMjFsMTQuNzI2LTUxLjUzOSwzNy43LTE4Ljg0OUwxNjgsMTg1Ljg4OVYyMzJhNDAuMDQ4LDQwLjA0OCwwLDAsMCwzNi41MjYsMzkuODRMMjM2LjY4NywzMDRsLTU4LjM0NCw1OC4zNDNhOCw4LDAsMCwwLS40ODksMTAuNzc5bDQwLDQ4YTgsOCwwLDAsMCw4LjY3NiwyLjQ2N2wxOC41ODctNi4xOTVhNTYsNTYsMCwwLDAsODMuNTY1LDY4LjMxNGwxMjQuMDY4LTg3LjgsMCwwLDEzLjA2LTkuMjQzLDAsMCw2LjUyNy00LjYxOEE1Niw1NiwwLDAsMCw0MTYuMywyODcuNTlsLS43MDctMi4xMkE4LDgsMCwwLDAsNDA4LDI4MEgzODAuNTNsLTMxLjEtNTEuODRBNTguMjkzLDU4LjI5MywwLDAsMCwyOTkuNjksMjAwSDI1NlYxNTZsMjcuNTA3LTIwLjYzLDI2LjAzOS02LjUxLDE5Ljg3OSwxOS44NzksNy40MiwxNC44MzlBOCw4LDAsMCwwLDM0NCwxNjhoMzJhOCw4LDAsMCwwLDcuNzYxLTYuMDZsOC0zMmE4LDgsMCwwLDAtMi4xLTcuNmwtOC04YTcuOTg2LDcuOTg2LDAsMCwwLTIuMDc5LTEuNWwtMTUuMjQyLTcuNjIxLTI4Ljg3OC0yMy4xYTM4LjA1MiwzOC4wNTIsMCwwLDAtMjkuOTg2LTcuODFsLTU4LjI2Nyw5LjcxMVY4MGE4LDgsMCwwLDAsOC04VjY0YTQ4LDQ4LDAsMCwwLTk2LDB2OGE4LDgsMCwwLDAsOCw4Vjk2SDE1MmE4LDgsMCwwLDAtMy44MTcuOTY5bC02MC42MywzMy41YTM4LjA3OCwzOC4wNzgsMCwwLDAtMTguMjQxLDI0Ljc1TDU2LjcsMjExLjk5LDQyLjM0MywyMjYuMzQzYTcuOTkyLDcuOTkyLDAsMCwwLTEuOTMyLDMuMTI3bC04LDI0QTgsOCwwLDAsMCwzNi42NjgsMjYzLjI3M1ptMjE2Ljk4OSw0Ni4zODRhOCw4LDAsMCwwLDAtMTEuMzE0TDIyNy4zMTQsMjcyaDQ5LjM3M2wxNy4yMjgsMTcuMjI4YTIwLjQzOSwyMC40MzksMCwwLDEtLjk5NCwyOS44MzZsLTUyLjU1Niw0NS45ODdMMjE5LjMxNCwzNDRaTTIyNi42NSw0MDYuNjg0bC0zMS44MjctMzguMTkzTDIwOCwzNTUuMzEzbDI0Ljc3NiwyNC43NzcsNS42NjYsMjIuNjYzWm0yMi4zLTI3Ljg4Miw1NC41MS00Ny43YTM2LjQzOSwzNi40MzksMCwwLDAsMS43NzEtNTMuMTlMMjk5LjMxMywyNzJoOC40MDZsMjkuNjI1LDQ0LjQzOCwxMS43NDUsMTcuNjE4LTg1LjEwNyw2MC4yMjlhNTUuOTI1LDU1LjkyNSwwLDAsMC05LjEzNyw4LjExWk00NTYuNTc0LDM3NS42bC0xMy4wNjksOS4yNDlhOCw4LDAsMCwxLTkuMjM1LTEzLjA2NWwxMy4wNi05LjI0M2E4LDgsMCwwLDEsOS4yNDQsMTMuMDU5Wm0tMTguNDg3LTI2LjExOS0xMy4wNiw5LjI0My05LjI0Mi0xMy4wNjFoMGwxMy4wNTktOS4yNDIsOS4yNDMsMTMuMDZaTTQxMC4zNjIsMzEwLjNhOCw4LDAsMCwxLDkuMjQsMTMuMDYybC0xMy4wNiw5LjI0M2E4LDgsMCwwLDEtOS4yNTQtMTMuMDUzWm0tMzEuNTMsMjIuMzE0YTIzLjk4MywyMy45ODMsMCwwLDAsMTkuMDM5LDE3LjExN2MuNDM2LjA3NC44NzEuMTE2LDEuMzA3LjE2N2wxNi4zNDEsMjMuMDljLS4xLjQyNS0uMjEuODQ1LS4yODQsMS4yNzlhMjMuOTUzLDIzLjk1MywwLDAsMCw5LjgxNSwyMy42NDVMMzU3LjUsNDQ1LjcxNGEyMy45NSwyMy45NSwwLDAsMC0yMC4zNS0xNy4yOUwzMjAuODEsNDA1LjMzOWMuMS0uNDI1LjIwOS0uODQ1LjI4My0xLjI3OGEyMy45MTUsMjMuOTE1LDAsMCwwLTkuODIxLTIzLjY0MVptLTk5LjA3Nyw3MC4xMTUsMTMuMDYyLTkuMjQzYTcuOTM4LDcuOTM4LDAsMCwxLDQuNi0xLjQ3Miw4LjEwNiw4LjEwNiwwLDAsMSwxLjM2Ny4xMTcsOCw4LDAsMCwxLDMuMjcyLDE0LjQxNkwyODksNDE1Ljc4NGE4LDgsMCwwLDEtMTEuMTUxLTEuOTA5aDBBOC4wMDksOC4wMDksMCwwLDEsMjc5Ljc1NSw0MDIuNzI0Wk0zMTEuMyw0MTkuNmw5LjI0MiwxMy4wNi0xMy4wNiw5LjI0My05LjI0My0xMy4wNjFabTUuNDI0LDM1LjM2MywxMy4wNjEtOS4yNDJhOCw4LDAsMSwxLDkuMjQyLDEzLjA2bC0xMy4wNTksOS4yNDJhOCw4LDAsMSwxLTkuMjQ0LTEzLjA2Wk0yNjMuNjgyLDQ2My4xYTQwLjA1OSw0MC4wNTksMCwwLDEtMS4zLTQ0LjI1LDI0LjAxNiwyNC4wMTYsMCwwLDAsMTcuOTQ5LDE0LjA1N2MuNDM2LjA3NS44NzIuMTE3LDEuMzA4LjE2OGwxNi4zMjksMjMuMDc0YTIzLjk0NSwyMy45NDUsMCwwLDAsMy43OTIsMTkuMjA3aDBhMjQuMDQ2LDI0LjA0NiwwLDAsMCwzLjIzMSwzLjY4N0E0MC4wNjEsNDAuMDYxLDAsMCwxLDI2My42ODIsNDYzLjFaTTQ0Ni43NDUsMjk4LjlhNDAsNDAsMCwwLDEsMjcuMiw2MC41NjksMjMuOTg2LDIzLjk4NiwwLDAsMC0xOS4yNjEtMTQuMjNMNDM4LjM2NCwzMjIuMTdhMjMuOTc5LDIzLjk3OSwwLDAsMC03LjAyOS0yMi45MSwzOS41OCwzOS41OCwwLDAsMSw4LjU3Ni0uOTQ0QTQwLjQzOSw0MC40MzksMCwwLDEsNDQ2Ljc0NSwyOTguOVptLTQ0LjM5MS0yLjUzOS0yLjMwNywxLjYzMkwzNjIuMTU0LDMyNC44MWwtNy4zLTEwLjk1MUwzNzguNjY3LDI5NmgyMy41NjdabS02Ni42NDktNTkuOTY5LDI5LjcyMyw0OS41MzctMTkuNDYzLDE0LjYtMjcuMzA5LTQwLjk2NEE4LDgsMCwwLDAsMzEyLDI1NkgyMDhhMjQuMDI4LDI0LjAyOCwwLDAsMS0yNC0yNFYyMTZIMjk5LjY5QTQyLjIxLDQyLjIxLDAsMCwxLDMzNS43MDUsMjM2LjM5MlptLTI3LjYtMTQ2LjNhMjIuMDM3LDIyLjAzNywwLDAsMSwxNy4zNiw0LjUyMkwzNTUsMTE4LjI0N2E4LDgsMCwwLDAsMS40Mi45MDhsMTQuODM5LDcuNDIsMy44NzksMy44NzlMMzY5Ljc1NCwxNTJoLTIwLjgxbC01Ljc4OS0xMS41NzhhNy45ODYsNy45ODYsMCwwLDAtMS41LTIuMDc5bC0yNC0yNGE4LDgsMCwwLDAtNy42LTIuMUwyODYuMiwxMTguMmwtNC43MzQtMjMuNjcxWk0yMDcuMjA1LDMyYTMyLjAzNiwzMi4wMzYsMCwwLDEsMzIsMzJoLTY0QTMyLjAzNiwzMi4wMzYsMCwwLDEsMjA3LjIwNSwzMlptMjQsNDh2MjRhMjQsMjQsMCwxLDEtNDgsMFY4MFptLTc3LjE3NCwzMkgxNjguMDFhNDAsNDAsMCwwLDAsNzkuMi04di0zLjc1N2wxOC40NjktMy4wNzgsNS40OTMsMjcuNDZMMjQzLjIsMTQ1LjZBOCw4LDAsMCwwLDI0MCwxNTJ2NDhIMTg0VjE4NGE3Ljk5NCw3Ljk5NCwwLDAsMC0uODQ1LTMuNTc4bC0xNi0zMmE4LDgsMCwwLDAtMTAuNzMzLTMuNTc3bC0xNy41LDguNzUxTDEyMy4zLDEyOC42ODJaTTU0Ljk5MiwyMzYuMzIxbDE0LjY2NS0xNC42NjRhOC4wMDYsOC4wMDYsMCwwLDAsMi4xNTMtMy45MjJMODQuOTMxLDE1OC42OWEyMi4wNDQsMjIuMDQ0LDAsMCwxLDEwLjU2MS0xNC4zMjlsMTMuODA5LTcuODksMTUuMjQxLDI0LjMxNC0xNi4xMiw4LjA2YTgsOCwwLDAsMC00LjExNCw0Ljk1N2wtMTYsNTZBOC4wMTMsOC4wMTMsMCwwLDAsODgsMjMydjE2SDgwYTgsOCwwLDAsMC03LjQwNSw0Ljk3MmwtMy4xNTQsNy43MTRMNDkuODYsMjUxLjcxN1oiIGZpbGw9IiNmODhiMDAiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIHN0eWxlPSIiPjwvcGF0aD48cGF0aCBkPSJNMTQ2LjY0OCwzMjYuMDU0bC00MCwzNmE4LDgsMCwxLDAsMTAuNywxMS44OTJsNDAtMzZhOCw4LDAsMCwwLTEwLjctMTEuODkyWiIgZmlsbD0iI2Y4OGIwMCIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgc3R5bGU9IiI+PC9wYXRoPjxwYXRoIGQ9Ik00MjEuOTQ2LDE3OC42NDhhOCw4LDAsMCwwLTExLjMtLjU5NGwtNDAsMzZhOCw4LDAsMSwwLDEwLjcsMTEuODkybDQwLTM2QTgsOCwwLDAsMCw0MjEuOTQ2LDE3OC42NDhaIiBmaWxsPSIjZjg4YjAwIiBkYXRhLW9yaWdpbmFsPSIjMDAwMDAwIiBzdHlsZT0iIj48L3BhdGg+PHBhdGggZD0iTTQxMC42NDgsMjE4Ljg1NGwtOCw3LjJhOCw4LDAsMSwwLDEwLjcsMTEuODkybDgtNy4yYTgsOCwwLDAsMC0xMC43LTExLjg5MloiIGZpbGw9IiNmODhiMDAiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIHN0eWxlPSIiPjwvcGF0aD48cGF0aCBkPSJNNDI2LjY0OCwyMDQuNDU0YTgsOCwwLDEsMCwxMC43LDExLjg5MmwxNi0xNC40YTgsOCwwLDEsMC0xMC43LTExLjg5MloiIGZpbGw9IiNmODhiMDAiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIHN0eWxlPSIiPjwvcGF0aD48cGF0aCBkPSJNMTgxLjM1MiwzMTYuMzQ2bDE2LTE0LjRhOCw4LDAsMCwwLTEwLjctMTEuODkybC0xNiwxNC40YTgsOCwwLDEsMCwxMC43LDExLjg5MloiIGZpbGw9IiNmODhiMDAiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIHN0eWxlPSIiPjwvcGF0aD48cGF0aCBkPSJNMTY2LjE0NiwyNzQuODc4YTgsOCwwLDAsMC0xMS4yNjgtMS4wMjRsLTQ4LDQwYTgsOCwwLDAsMCwxMC4yNDQsMTIuMjkybDQ4LTQwQTgsOCwwLDAsMCwxNjYuMTQ2LDI3NC44NzhaIiBmaWxsPSIjZjg4YjAwIiBkYXRhLW9yaWdpbmFsPSIjMDAwMDAwIiBzdHlsZT0iIj48L3BhdGg+PHBhdGggZD0iTTQ4LDE2MGE4LDgsMCwwLDAsOC04LDM2Ljc2OCwzNi43NjgsMCwwLDEsMTYuNDA3LTMwLjY1Nmw0LjAzMS0yLjY4N2E4LDgsMCwwLDAtOC44NzYtMTMuMzE0bC00LjAzLDIuNjg4QTUyLjczOSw1Mi43MzksMCwwLDAsNDAsMTUyLDgsOCwwLDAsMCw0OCwxNjBaIiBmaWxsPSIjZjg4YjAwIiBkYXRhLW9yaWdpbmFsPSIjMDAwMDAwIiBzdHlsZT0iIj48L3BhdGg+PHBhdGggZD0iTTMwNC4xMDgsMzcuNzI3LDI5NC4wNiw0MC4yMzlhOCw4LDAsMSwwLDMuODgsMTUuNTIybDEwLjA0OS0yLjUxMmEzMi4xMjcsMzIuMTI3LDAsMCwxLDMwLjM1NCw4LjQwOCw4LDgsMCwwLDAsMTEuMzE0LTExLjMxNEE0OC4yMDYsNDguMjA2LDAsMCwwLDMwNC4xMDgsMzcuNzI3WiIgZmlsbD0iI2Y4OGIwMCIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgc3R5bGU9IiI+PC9wYXRoPjwvZz48L2c+PC9zdmc+"
+                    /></span>
+                    </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title">PERSONAL TRAINING</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur dolores voluptas obcaecati quo consequuntur mollitia facilis.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div data-aos="fade-up" data-aos-duration="1500" class="card">
+                    <div class="card-header">
+                        <span> <img class="pt-4" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDQ5NiA0OTYiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTIiIHhtbDpzcGFjZT0icHJlc2VydmUiIGNsYXNzPSIiPjxnPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgoJPGc+CgkJPGc+CgkJCTxwYXRoIGQ9Ik00ODkuMzUyLDE4MC41NjlMNDg5LjM1MiwxODAuNTY5Yy00LjE2OS0zLjAwMy05LjUyNS0zLjgyMS0xNC40LTIuMmwtMzYuMjQ4LDEyLjA4SDU3LjI5NmwtMzYuMjMyLTEyLjA3MiAgICAgYy04LjM4Mi0yLjc5Ny0xNy40NDUsMS43MzEtMjAuMjQxLDEwLjExM2MtMC41NDQsMS42My0wLjgyMSwzLjMzNi0wLjgyMyw1LjA1NXYxNS4xMzZjLTAuMDEsNi44OTMsNC4zOTcsMTMuMDE4LDEwLjkzNiwxNS4yICAgICBsNDIuNTM2LDE0LjE3NmMwLjgxNiwwLjI2NSwxLjY3LDAuMzk4LDIuNTI4LDAuMzkyaDQwaDMwNGg0MGMwLjg1OSwwLjAwMSwxLjcxMy0wLjEzNywyLjUyOC0wLjQwOGw0Mi41MzYtMTQuMTc2ICAgICBjNi41MzQtMi4xOCwxMC45MzktOC4yOTYsMTAuOTM2LTE1LjE4NHYtMTUuMTM2QzQ5NS45OTEsMTg4LjQwNSw0OTMuNTE5LDE4My41OCw0ODkuMzUyLDE4MC41Njl6IE00ODAsMjA4LjY4MWwtNDEuMjk2LDEzLjc2OCAgICAgSDU3LjI5NkwxNiwyMDguNjgxdi0xNS4xMjhsMzcuNDcyLDEyLjQ4OGMwLjgxNSwwLjI3MSwxLjY2OSwwLjQwOSwyLjUyOCwwLjQwOGgzODRjMC44NTksMC4wMDEsMS43MTMtMC4xMzcsMi41MjgtMC40MDggICAgIEw0ODAsMTkzLjUyMUw0ODAsMjA4LjY4MXoiIGZpbGw9IiNmODhiMDAiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIHN0eWxlPSIiPjwvcGF0aD4KCQkJPHBhdGggZD0iTTU2LDI3OC40NDljMCwyMi4wOTEsMTcuOTA5LDQwLDQwLDQwczQwLTE3LjkwOSw0MC00MGMwLTIyLjA5MS0xNy45MDktNDAtNDAtNDAgICAgIEM3My45MiwyMzguNDc2LDU2LjAyNiwyNTYuMzY5LDU2LDI3OC40NDl6IE05NiwyNTQuNDQ5YzEzLjI1NSwwLDI0LDEwLjc0NSwyNCwyNHMtMTAuNzQ1LDI0LTI0LDI0cy0yNC0xMC43NDUtMjQtMjQgICAgIFM4Mi43NDUsMjU0LjQ0OSw5NiwyNTQuNDQ5eiIgZmlsbD0iI2Y4OGIwMCIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgc3R5bGU9IiI+PC9wYXRoPgoJCQk8cGF0aCBkPSJNMzYwLDI3OC40NDljMCwyMi4wOTEsMTcuOTA5LDQwLDQwLDQwYzIyLjA5MSwwLDQwLTE3LjkwOSw0MC00MGMwLTIyLjA5MS0xNy45MDktNDAtNDAtNDAgICAgIEMzNzcuOTIsMjM4LjQ3NiwzNjAuMDI3LDI1Ni4zNjksMzYwLDI3OC40NDl6IE00MDAsMjU0LjQ0OWMxMy4yNTUsMCwyNCwxMC43NDUsMjQsMjRzLTEwLjc0NSwyNC0yNCwyNHMtMjQtMTAuNzQ1LTI0LTI0ICAgICBTMzg2Ljc0NSwyNTQuNDQ5LDQwMCwyNTQuNDQ5eiIgZmlsbD0iI2Y4OGIwMCIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgc3R5bGU9IiI+PC9wYXRoPgoJCQk8Y2lyY2xlIGN4PSI0MDAiIGN5PSIyNzguNDQ5IiByPSIxNiIgZmlsbD0iI2Y4OGIwMCIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgc3R5bGU9IiI+PC9jaXJjbGU+CgkJCTxjaXJjbGUgY3g9Ijk2IiBjeT0iMjc4LjQ0OSIgcj0iMTYiIGZpbGw9IiNmODhiMDAiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIHN0eWxlPSIiPjwvY2lyY2xlPgoJCTwvZz4KCTwvZz4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8L2c+PC9zdmc+"
+                    /></span>
+                    </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title">BEST SKATER</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur dolores voluptas obcaecati quo consequuntur mollitia facilis.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div data-aos="fade-up" data-aos-duration="500" class="card">
+                    <div class="card-header">
+                        <span><img class="pt-4" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTIiIHhtbDpzcGFjZT0icHJlc2VydmUiIGNsYXNzPSIiPjxnPjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgaWQ9Ik91dGxpbmUiPjxwYXRoIGQ9Ik00MjMuOTIyLDI3NC4xNTksMzY5LjE0OCwyNjYuNCwzNjAsMjY1LjA3NnYtMjUuMUE3OS4zODcsNzkuMzg3LDAsMCwwLDM5MC4zNDMsMTkyaDQ2LjM0NEExNiwxNiwwLDAsMCw0NDgsMTY0LjY4NmwtNDgtNDhWNzJhNTYsNTYsMCwwLDAtNTYtNTZIMjgwYTU2LDU2LDAsMCwwLTU2LDU2djQ4YTguMTI5LDguMTI5LDAsMCwwLC4wNjguOTkzQTMyLDMyLDAsMCwwLDIzMiwxODRoLjRhNzkuNzY1LDc5Ljc2NSwwLDAsMCwzMS42NCw1NkgyNjR2MjUuNTMybC0xMy4xNzQsMi44MjNoMGwtNTQuNTU5LDExLjY5MUE1Niw1NiwwLDAsMCwxODQsMjg0LjIzOVYxNTJhNzIsNzIsMCwwLDAtMTQ0LDBWNDI0YTcxLjk0Miw3MS45NDIsMCwwLDAsMTE4Ljk1OSw1NC41MUE0MC4wNzQsNDAuMDc0LDAsMCwwLDE5Miw0OTZoMjRhOC4wMjQsOC4wMjQsMCwwLDAsMS42NS0uMTcybDk0LjM5MS0xOS45LDk0LjMwOCwxOS45QTcuOTY2LDcuOTY2LDAsMCwwLDQwOCw0OTZoMjRhNDAuMDQ1LDQwLjA0NSwwLDAsMCw0MC00MFYzMjkuNkE1Ni4zODcsNTYuMzg3LDAsMCwwLDQyMy45MjIsMjc0LjE1OVpNNDExLjE2LDM5OC4yMjksNDI1LjY0NywzOTJINDU2djIzLjM1OUw0MDguNjExLDQxMS43bC0yNC41MzctMS44ODFaTTI4MCwyNzJWMjQ5LjMxNmE3OS45NTQsNzkuOTU0LDAsMCwwLDY0LDBWMjcyYTgsOCwwLDAsMCw2Ljg1Miw3LjkxN2w4Ljc2NSwxLjI3MUE0NC42MTcsNDQuNjE3LDAsMCwxLDMxNS40NCwzMjBoLTYuODhhNDQuNjIyLDQ0LjYyMiwwLDAsMS00NC4xLTM4LjJsOS4yMTUtMS45NzVBOCw4LDAsMCwwLDI4MCwyNzJabTEwNi41MS05NmE1NS42MzIsNTUuNjMyLDAsMCwxLTM5LjYtMTYuNGwtMzEuNi0zMS42aDczLjM3M2w0Ny45OTQsNDhaTTI0MCwxMTJWOTZoNDBhOCw4LDAsMCwxLDAsMTZabTIuNTgyLTU0LjA1MkEzMS42ODIsMzEuNjgyLDAsMCwxLDI2Myw4MEgyNDBWNzJBMzkuODUzLDM5Ljg1MywwLDAsMSwyNDIuNTgyLDU3Ljk0OFpNMjU2LDQwYTQwLjI0Niw0MC4yNDYsMCwwLDEsMjQtOGg2NGE0MCw0MCwwLDAsMSw0MCw0MHY0MEgzMDIuNjI0QTIzLjk5MiwyMy45OTIsMCwwLDAsMjgwLDgwaC0uNjY5QTQ3LjUyNyw0Ny41MjcsMCwwLDAsMjUxLjMsNDQuMTY0LDM5LjU5MywzOS41OTMsMCwwLDEsMjU2LDQwWk0yMTYsMTUyYTE2LjAxOSwxNi4wMTksMCwwLDEsMTYtMTZ2MzJBMTYuMDE5LDE2LjAxOSwwLDAsMSwyMTYsMTUyWm0zMiwyNFYxMjhoNDQuNjg2TDMzNS42LDE3MC45MTJhNzEuNDYxLDcxLjQ2MSwwLDAsMCwzOC41ODcsMjAuMDIyQTYzLjk3OCw2My45NzgsMCwwLDEsMjQ4LDE3NlpNMTk5LjYxOCwyOTUuNjkxbDQ5LjE3MS0xMC41MzZBNjAuNjUxLDYwLjY1MSwwLDAsMCwzMDguNTYsMzM2aDYuODhhNjAuNjM4LDYwLjYzOCwwLDAsMCw2MC4wMTMtNTIuNTQ0TDQyMS42NDYsMjkwQTQwLjI5Myw0MC4yOTMsMCwwLDEsNDU2LDMyOS42VjM3Nkg0MjRhOC4wMTgsOC4wMTgsMCwwLDAtMy4xNi42NUw0MTYsMzc4LjczMlYzNTJINDAwdjMzLjZsLTMzLjkzMywxNC41MjNMMzExLjk1Niw0MDQuM2wtNTQuMDIyLTQuMTc0TDIyNCwzODUuNlYzNTJIMjA4djI2LjczMWwtNC44NC0yLjA4MUE4LjAxOCw4LjAxOCwwLDAsMCwyMDAsMzc2SDE4NFYzMDIuODJBNDAuMDU0LDQwLjA1NCwwLDAsMSwxOTkuNjE4LDI5NS42OTFaTTg4LDM4Mi42MjlBMjQuMDQyLDI0LjA0MiwwLDAsMCwxMDQsMzYwdi04aDE2djhhMjQuMDQyLDI0LjA0MiwwLDAsMCwxNiwyMi42MjlWNDAwSDg4Wk0xMzYsMzYwVjM0NGE4LDgsMCwwLDAtOC04SDk2YTgsOCwwLDAsMC04LDh2MTZhNy45ODUsNy45ODUsMCwwLDEtMy4yMjcsNi40QTE1Ljk2OSwxNS45NjksMCwwLDAsNzIsMzYwSDU2VjIxNkg3MkExNS45NjksMTUuOTY5LDAsMCwwLDg0Ljc3MywyMDkuNiw3Ljk4NSw3Ljk4NSwwLDAsMSw4OCwyMTZ2MTZhOCw4LDAsMCwwLDgsOGgzMmE4LDgsMCwwLDAsOC04VjIxNmE3Ljk4NSw3Ljk4NSwwLDAsMSwzLjIyNy02LjQwNUExNS45NjksMTUuOTY5LDAsMCwwLDE1MiwyMTZoMTZWMzYwSDE1MmExNS45NjksMTUuOTY5LDAsMCwwLTEyLjc3Myw2LjRBNy45ODUsNy45ODUsMCwwLDEsMTM2LDM2MFpNNTYsMzc2SDcydjMySDU2Wk03MiwyMDBINTZWMTY4SDcyWm02NC02LjYyOUEyNC4wNDIsMjQuMDQyLDAsMCwwLDEyMCwyMTZ2OEgxMDR2LThhMjQuMDQyLDI0LjA0MiwwLDAsMC0xNi0yMi42MjlWMTc2aDQ4Wk0xNjgsMjAwSDE1MlYxNjhoMTZaTTE1MiwzNzZoMTZ2MzJIMTUyWk0xMTIsOTZhNTYuMDYzLDU2LjA2MywwLDAsMSw1Niw1NkgxNTJhMTYsMTYsMCwwLDAtMTMuODM1LDhIODUuODM1QTE2LDE2LDAsMCwwLDcyLDE1Mkg1NkE1Ni4wNjMsNTYuMDYzLDAsMCwxLDExMiw5NlptMCwzODRhNTYuMDYzLDU2LjA2MywwLDAsMS01Ni01Nkg3MmExNiwxNiwwLDAsMCwxMy44MzUtOGg1Mi4zM0ExNiwxNiwwLDAsMCwxNTIsNDI0aDE2QTU2LjA2Myw1Ni4wNjMsMCwwLDEsMTEyLDQ4MFptMTAzLjE2NiwwSDE5MmEyMy45OCwyMy45OCwwLDAsMS0yMS43LTEzLjgxN0E3MS44ODQsNzEuODg0LDAsMCwwLDE3OS44NzIsNDQ4aDE3LjcxMWwxMy45NjQsOS4yODYsOCw1LjM2QTgsOCwwLDAsMCwyMjQsNDY0aDMxLjE2OWwxNy45NzgsMy43NzVaTTQ1Niw0NTZhMjQuMDI4LDI0LjAyOCwwLDAsMS0yNCwyNEg0MDguODM1bC0xNTEuMTktMzEuODI5QTguMDQ1LDguMDQ1LDAsMCwwLDI1Niw0NDhIMjI2LjQzM2wtMjItMTQuNjYxQTgsOCwwLDAsMCwyMDAsNDMySDE4My41NDVjLjI5Mi0yLjYyOC40NTUtNDAsLjQ1NS00MGgxNC4zNTNsMTQuNSw2LjIzNCw0MCwxNy4xMmE3Ljk4Nyw3Ljk4NywwLDAsMCwyLjUzMS42MjNsMTUyLDExLjY3OUw0NTYsNDMxLjQwNloiIGZpbGw9IiNmODhiMDAiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIHN0eWxlPSIiIGNsYXNzPSIiPjwvcGF0aD48cGF0aCBkPSJNMjc2LDE2MGExMiwxMiwwLDEsMC0xMi0xMkExMi4wMTMsMTIuMDEzLDAsMCwwLDI3NiwxNjBaIiBmaWxsPSIjZjg4YjAwIiBkYXRhLW9yaWdpbmFsPSIjMDAwMDAwIiBzdHlsZT0iIiBjbGFzcz0iIj48L3BhdGg+PHBhdGggZD0iTTI4OCwyMDBoMTYuOTM0YTExNS4wMzIsMTE1LjAzMiwwLDAsMCwzMy4zODUtNC45bC00LjYzOC0xNS4zMTNBOTkuMDYyLDk5LjA2MiwwLDAsMSwzMDQuOTM0LDE4NEgyODhaIiBmaWxsPSIjZjg4YjAwIiBkYXRhLW9yaWdpbmFsPSIjMDAwMDAwIiBzdHlsZT0iIiBjbGFzcz0iIj48L3BhdGg+PHJlY3QgeD0iMTA0IiB5PSIxODQiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iI2Y4OGIwMCIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgc3R5bGU9IiIgY2xhc3M9IiI+PC9yZWN0PjxyZWN0IHg9IjEwNCIgeT0iMzc2IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIGZpbGw9IiNmODhiMDAiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIHN0eWxlPSIiIGNsYXNzPSIiPjwvcmVjdD48L2c+PC9nPjwvc3ZnPg==" /></span>
+
+                    </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title">SKATE FOR BEGINNER</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur dolores voluptas obcaecati quo consequuntur mollitia facilis.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div data-aos="fade-up" data-aos-duration="1000" class="card">
+                    <div class="card-header">
+                        <span><img class="pt-4" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTIiIHhtbDpzcGFjZT0icHJlc2VydmUiIGNsYXNzPSIiPjxnPjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgaWQ9Im91dGxpbmUiPjxwYXRoIGQ9Ik0zNi42NjgsMjYzLjI3Myw2OC41OSwyNzcuOWE5Ljg2Myw5Ljg2MywwLDAsMCwxMy44NjctNi43NjVMODUuMzcyLDI2NEg5NmE4LDgsMCwwLDAsOC04VjIzMy4xMjFsMTQuNzI2LTUxLjUzOSwzNy43LTE4Ljg0OUwxNjgsMTg1Ljg4OVYyMzJhNDAuMDQ4LDQwLjA0OCwwLDAsMCwzNi41MjYsMzkuODRMMjM2LjY4NywzMDRsLTU4LjM0NCw1OC4zNDNhOCw4LDAsMCwwLS40ODksMTAuNzc5bDQwLDQ4YTgsOCwwLDAsMCw4LjY3NiwyLjQ2N2wxOC41ODctNi4xOTVhNTYsNTYsMCwwLDAsODMuNTY1LDY4LjMxNGwxMjQuMDY4LTg3LjgsMCwwLDEzLjA2LTkuMjQzLDAsMCw2LjUyNy00LjYxOEE1Niw1NiwwLDAsMCw0MTYuMywyODcuNTlsLS43MDctMi4xMkE4LDgsMCwwLDAsNDA4LDI4MEgzODAuNTNsLTMxLjEtNTEuODRBNTguMjkzLDU4LjI5MywwLDAsMCwyOTkuNjksMjAwSDI1NlYxNTZsMjcuNTA3LTIwLjYzLDI2LjAzOS02LjUxLDE5Ljg3OSwxOS44NzksNy40MiwxNC44MzlBOCw4LDAsMCwwLDM0NCwxNjhoMzJhOCw4LDAsMCwwLDcuNzYxLTYuMDZsOC0zMmE4LDgsMCwwLDAtMi4xLTcuNmwtOC04YTcuOTg2LDcuOTg2LDAsMCwwLTIuMDc5LTEuNWwtMTUuMjQyLTcuNjIxLTI4Ljg3OC0yMy4xYTM4LjA1MiwzOC4wNTIsMCwwLDAtMjkuOTg2LTcuODFsLTU4LjI2Nyw5LjcxMVY4MGE4LDgsMCwwLDAsOC04VjY0YTQ4LDQ4LDAsMCwwLTk2LDB2OGE4LDgsMCwwLDAsOCw4Vjk2SDE1MmE4LDgsMCwwLDAtMy44MTcuOTY5bC02MC42MywzMy41YTM4LjA3OCwzOC4wNzgsMCwwLDAtMTguMjQxLDI0Ljc1TDU2LjcsMjExLjk5LDQyLjM0MywyMjYuMzQzYTcuOTkyLDcuOTkyLDAsMCwwLTEuOTMyLDMuMTI3bC04LDI0QTgsOCwwLDAsMCwzNi42NjgsMjYzLjI3M1ptMjE2Ljk4OSw0Ni4zODRhOCw4LDAsMCwwLDAtMTEuMzE0TDIyNy4zMTQsMjcyaDQ5LjM3M2wxNy4yMjgsMTcuMjI4YTIwLjQzOSwyMC40MzksMCwwLDEtLjk5NCwyOS44MzZsLTUyLjU1Niw0NS45ODdMMjE5LjMxNCwzNDRaTTIyNi42NSw0MDYuNjg0bC0zMS44MjctMzguMTkzTDIwOCwzNTUuMzEzbDI0Ljc3NiwyNC43NzcsNS42NjYsMjIuNjYzWm0yMi4zLTI3Ljg4Miw1NC41MS00Ny43YTM2LjQzOSwzNi40MzksMCwwLDAsMS43NzEtNTMuMTlMMjk5LjMxMywyNzJoOC40MDZsMjkuNjI1LDQ0LjQzOCwxMS43NDUsMTcuNjE4LTg1LjEwNyw2MC4yMjlhNTUuOTI1LDU1LjkyNSwwLDAsMC05LjEzNyw4LjExWk00NTYuNTc0LDM3NS42bC0xMy4wNjksOS4yNDlhOCw4LDAsMCwxLTkuMjM1LTEzLjA2NWwxMy4wNi05LjI0M2E4LDgsMCwwLDEsOS4yNDQsMTMuMDU5Wm0tMTguNDg3LTI2LjExOS0xMy4wNiw5LjI0My05LjI0Mi0xMy4wNjFoMGwxMy4wNTktOS4yNDIsOS4yNDMsMTMuMDZaTTQxMC4zNjIsMzEwLjNhOCw4LDAsMCwxLDkuMjQsMTMuMDYybC0xMy4wNiw5LjI0M2E4LDgsMCwwLDEtOS4yNTQtMTMuMDUzWm0tMzEuNTMsMjIuMzE0YTIzLjk4MywyMy45ODMsMCwwLDAsMTkuMDM5LDE3LjExN2MuNDM2LjA3NC44NzEuMTE2LDEuMzA3LjE2N2wxNi4zNDEsMjMuMDljLS4xLjQyNS0uMjEuODQ1LS4yODQsMS4yNzlhMjMuOTUzLDIzLjk1MywwLDAsMCw5LjgxNSwyMy42NDVMMzU3LjUsNDQ1LjcxNGEyMy45NSwyMy45NSwwLDAsMC0yMC4zNS0xNy4yOUwzMjAuODEsNDA1LjMzOWMuMS0uNDI1LjIwOS0uODQ1LjI4My0xLjI3OGEyMy45MTUsMjMuOTE1LDAsMCwwLTkuODIxLTIzLjY0MVptLTk5LjA3Nyw3MC4xMTUsMTMuMDYyLTkuMjQzYTcuOTM4LDcuOTM4LDAsMCwxLDQuNi0xLjQ3Miw4LjEwNiw4LjEwNiwwLDAsMSwxLjM2Ny4xMTcsOCw4LDAsMCwxLDMuMjcyLDE0LjQxNkwyODksNDE1Ljc4NGE4LDgsMCwwLDEtMTEuMTUxLTEuOTA5aDBBOC4wMDksOC4wMDksMCwwLDEsMjc5Ljc1NSw0MDIuNzI0Wk0zMTEuMyw0MTkuNmw5LjI0MiwxMy4wNi0xMy4wNiw5LjI0My05LjI0My0xMy4wNjFabTUuNDI0LDM1LjM2MywxMy4wNjEtOS4yNDJhOCw4LDAsMSwxLDkuMjQyLDEzLjA2bC0xMy4wNTksOS4yNDJhOCw4LDAsMSwxLTkuMjQ0LTEzLjA2Wk0yNjMuNjgyLDQ2My4xYTQwLjA1OSw0MC4wNTksMCwwLDEtMS4zLTQ0LjI1LDI0LjAxNiwyNC4wMTYsMCwwLDAsMTcuOTQ5LDE0LjA1N2MuNDM2LjA3NS44NzIuMTE3LDEuMzA4LjE2OGwxNi4zMjksMjMuMDc0YTIzLjk0NSwyMy45NDUsMCwwLDAsMy43OTIsMTkuMjA3aDBhMjQuMDQ2LDI0LjA0NiwwLDAsMCwzLjIzMSwzLjY4N0E0MC4wNjEsNDAuMDYxLDAsMCwxLDI2My42ODIsNDYzLjFaTTQ0Ni43NDUsMjk4LjlhNDAsNDAsMCwwLDEsMjcuMiw2MC41NjksMjMuOTg2LDIzLjk4NiwwLDAsMC0xOS4yNjEtMTQuMjNMNDM4LjM2NCwzMjIuMTdhMjMuOTc5LDIzLjk3OSwwLDAsMC03LjAyOS0yMi45MSwzOS41OCwzOS41OCwwLDAsMSw4LjU3Ni0uOTQ0QTQwLjQzOSw0MC40MzksMCwwLDEsNDQ2Ljc0NSwyOTguOVptLTQ0LjM5MS0yLjUzOS0yLjMwNywxLjYzMkwzNjIuMTU0LDMyNC44MWwtNy4zLTEwLjk1MUwzNzguNjY3LDI5NmgyMy41NjdabS02Ni42NDktNTkuOTY5LDI5LjcyMyw0OS41MzctMTkuNDYzLDE0LjYtMjcuMzA5LTQwLjk2NEE4LDgsMCwwLDAsMzEyLDI1NkgyMDhhMjQuMDI4LDI0LjAyOCwwLDAsMS0yNC0yNFYyMTZIMjk5LjY5QTQyLjIxLDQyLjIxLDAsMCwxLDMzNS43MDUsMjM2LjM5MlptLTI3LjYtMTQ2LjNhMjIuMDM3LDIyLjAzNywwLDAsMSwxNy4zNiw0LjUyMkwzNTUsMTE4LjI0N2E4LDgsMCwwLDAsMS40Mi45MDhsMTQuODM5LDcuNDIsMy44NzksMy44NzlMMzY5Ljc1NCwxNTJoLTIwLjgxbC01Ljc4OS0xMS41NzhhNy45ODYsNy45ODYsMCwwLDAtMS41LTIuMDc5bC0yNC0yNGE4LDgsMCwwLDAtNy42LTIuMUwyODYuMiwxMTguMmwtNC43MzQtMjMuNjcxWk0yMDcuMjA1LDMyYTMyLjAzNiwzMi4wMzYsMCwwLDEsMzIsMzJoLTY0QTMyLjAzNiwzMi4wMzYsMCwwLDEsMjA3LjIwNSwzMlptMjQsNDh2MjRhMjQsMjQsMCwxLDEtNDgsMFY4MFptLTc3LjE3NCwzMkgxNjguMDFhNDAsNDAsMCwwLDAsNzkuMi04di0zLjc1N2wxOC40NjktMy4wNzgsNS40OTMsMjcuNDZMMjQzLjIsMTQ1LjZBOCw4LDAsMCwwLDI0MCwxNTJ2NDhIMTg0VjE4NGE3Ljk5NCw3Ljk5NCwwLDAsMC0uODQ1LTMuNTc4bC0xNi0zMmE4LDgsMCwwLDAtMTAuNzMzLTMuNTc3bC0xNy41LDguNzUxTDEyMy4zLDEyOC42ODJaTTU0Ljk5MiwyMzYuMzIxbDE0LjY2NS0xNC42NjRhOC4wMDYsOC4wMDYsMCwwLDAsMi4xNTMtMy45MjJMODQuOTMxLDE1OC42OWEyMi4wNDQsMjIuMDQ0LDAsMCwxLDEwLjU2MS0xNC4zMjlsMTMuODA5LTcuODksMTUuMjQxLDI0LjMxNC0xNi4xMiw4LjA2YTgsOCwwLDAsMC00LjExNCw0Ljk1N2wtMTYsNTZBOC4wMTMsOC4wMTMsMCwwLDAsODgsMjMydjE2SDgwYTgsOCwwLDAsMC03LjQwNSw0Ljk3MmwtMy4xNTQsNy43MTRMNDkuODYsMjUxLjcxN1oiIGZpbGw9IiNmODhiMDAiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIHN0eWxlPSIiPjwvcGF0aD48cGF0aCBkPSJNMTQ2LjY0OCwzMjYuMDU0bC00MCwzNmE4LDgsMCwxLDAsMTAuNywxMS44OTJsNDAtMzZhOCw4LDAsMCwwLTEwLjctMTEuODkyWiIgZmlsbD0iI2Y4OGIwMCIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgc3R5bGU9IiI+PC9wYXRoPjxwYXRoIGQ9Ik00MjEuOTQ2LDE3OC42NDhhOCw4LDAsMCwwLTExLjMtLjU5NGwtNDAsMzZhOCw4LDAsMSwwLDEwLjcsMTEuODkybDQwLTM2QTgsOCwwLDAsMCw0MjEuOTQ2LDE3OC42NDhaIiBmaWxsPSIjZjg4YjAwIiBkYXRhLW9yaWdpbmFsPSIjMDAwMDAwIiBzdHlsZT0iIj48L3BhdGg+PHBhdGggZD0iTTQxMC42NDgsMjE4Ljg1NGwtOCw3LjJhOCw4LDAsMSwwLDEwLjcsMTEuODkybDgtNy4yYTgsOCwwLDAsMC0xMC43LTExLjg5MloiIGZpbGw9IiNmODhiMDAiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIHN0eWxlPSIiPjwvcGF0aD48cGF0aCBkPSJNNDI2LjY0OCwyMDQuNDU0YTgsOCwwLDEsMCwxMC43LDExLjg5MmwxNi0xNC40YTgsOCwwLDEsMC0xMC43LTExLjg5MloiIGZpbGw9IiNmODhiMDAiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIHN0eWxlPSIiPjwvcGF0aD48cGF0aCBkPSJNMTgxLjM1MiwzMTYuMzQ2bDE2LTE0LjRhOCw4LDAsMCwwLTEwLjctMTEuODkybC0xNiwxNC40YTgsOCwwLDEsMCwxMC43LDExLjg5MloiIGZpbGw9IiNmODhiMDAiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIHN0eWxlPSIiPjwvcGF0aD48cGF0aCBkPSJNMTY2LjE0NiwyNzQuODc4YTgsOCwwLDAsMC0xMS4yNjgtMS4wMjRsLTQ4LDQwYTgsOCwwLDAsMCwxMC4yNDQsMTIuMjkybDQ4LTQwQTgsOCwwLDAsMCwxNjYuMTQ2LDI3NC44NzhaIiBmaWxsPSIjZjg4YjAwIiBkYXRhLW9yaWdpbmFsPSIjMDAwMDAwIiBzdHlsZT0iIj48L3BhdGg+PHBhdGggZD0iTTQ4LDE2MGE4LDgsMCwwLDAsOC04LDM2Ljc2OCwzNi43NjgsMCwwLDEsMTYuNDA3LTMwLjY1Nmw0LjAzMS0yLjY4N2E4LDgsMCwwLDAtOC44NzYtMTMuMzE0bC00LjAzLDIuNjg4QTUyLjczOSw1Mi43MzksMCwwLDAsNDAsMTUyLDgsOCwwLDAsMCw0OCwxNjBaIiBmaWxsPSIjZjg4YjAwIiBkYXRhLW9yaWdpbmFsPSIjMDAwMDAwIiBzdHlsZT0iIj48L3BhdGg+PHBhdGggZD0iTTMwNC4xMDgsMzcuNzI3LDI5NC4wNiw0MC4yMzlhOCw4LDAsMSwwLDMuODgsMTUuNTIybDEwLjA0OS0yLjUxMmEzMi4xMjcsMzIuMTI3LDAsMCwxLDMwLjM1NCw4LjQwOCw4LDgsMCwwLDAsMTEuMzE0LTExLjMxNEE0OC4yMDYsNDguMjA2LDAsMCwwLDMwNC4xMDgsMzcuNzI3WiIgZmlsbD0iI2Y4OGIwMCIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgc3R5bGU9IiI+PC9wYXRoPjwvZz48L2c+PC9zdmc+"
+                    /></span>
+                    </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title">PERSONAL TRAINING</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur dolores voluptas obcaecati quo consequuntur mollitia facilis.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div data-aos="fade-up" data-aos-duration="1500" class="card">
+                    <div class="card-header">
+                        <span> <img class="pt-4" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDQ5NiA0OTYiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTIiIHhtbDpzcGFjZT0icHJlc2VydmUiIGNsYXNzPSIiPjxnPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgoJPGc+CgkJPGc+CgkJCTxwYXRoIGQ9Ik00ODkuMzUyLDE4MC41NjlMNDg5LjM1MiwxODAuNTY5Yy00LjE2OS0zLjAwMy05LjUyNS0zLjgyMS0xNC40LTIuMmwtMzYuMjQ4LDEyLjA4SDU3LjI5NmwtMzYuMjMyLTEyLjA3MiAgICAgYy04LjM4Mi0yLjc5Ny0xNy40NDUsMS43MzEtMjAuMjQxLDEwLjExM2MtMC41NDQsMS42My0wLjgyMSwzLjMzNi0wLjgyMyw1LjA1NXYxNS4xMzZjLTAuMDEsNi44OTMsNC4zOTcsMTMuMDE4LDEwLjkzNiwxNS4yICAgICBsNDIuNTM2LDE0LjE3NmMwLjgxNiwwLjI2NSwxLjY3LDAuMzk4LDIuNTI4LDAuMzkyaDQwaDMwNGg0MGMwLjg1OSwwLjAwMSwxLjcxMy0wLjEzNywyLjUyOC0wLjQwOGw0Mi41MzYtMTQuMTc2ICAgICBjNi41MzQtMi4xOCwxMC45MzktOC4yOTYsMTAuOTM2LTE1LjE4NHYtMTUuMTM2QzQ5NS45OTEsMTg4LjQwNSw0OTMuNTE5LDE4My41OCw0ODkuMzUyLDE4MC41Njl6IE00ODAsMjA4LjY4MWwtNDEuMjk2LDEzLjc2OCAgICAgSDU3LjI5NkwxNiwyMDguNjgxdi0xNS4xMjhsMzcuNDcyLDEyLjQ4OGMwLjgxNSwwLjI3MSwxLjY2OSwwLjQwOSwyLjUyOCwwLjQwOGgzODRjMC44NTksMC4wMDEsMS43MTMtMC4xMzcsMi41MjgtMC40MDggICAgIEw0ODAsMTkzLjUyMUw0ODAsMjA4LjY4MXoiIGZpbGw9IiNmODhiMDAiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIHN0eWxlPSIiPjwvcGF0aD4KCQkJPHBhdGggZD0iTTU2LDI3OC40NDljMCwyMi4wOTEsMTcuOTA5LDQwLDQwLDQwczQwLTE3LjkwOSw0MC00MGMwLTIyLjA5MS0xNy45MDktNDAtNDAtNDAgICAgIEM3My45MiwyMzguNDc2LDU2LjAyNiwyNTYuMzY5LDU2LDI3OC40NDl6IE05NiwyNTQuNDQ5YzEzLjI1NSwwLDI0LDEwLjc0NSwyNCwyNHMtMTAuNzQ1LDI0LTI0LDI0cy0yNC0xMC43NDUtMjQtMjQgICAgIFM4Mi43NDUsMjU0LjQ0OSw5NiwyNTQuNDQ5eiIgZmlsbD0iI2Y4OGIwMCIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgc3R5bGU9IiI+PC9wYXRoPgoJCQk8cGF0aCBkPSJNMzYwLDI3OC40NDljMCwyMi4wOTEsMTcuOTA5LDQwLDQwLDQwYzIyLjA5MSwwLDQwLTE3LjkwOSw0MC00MGMwLTIyLjA5MS0xNy45MDktNDAtNDAtNDAgICAgIEMzNzcuOTIsMjM4LjQ3NiwzNjAuMDI3LDI1Ni4zNjksMzYwLDI3OC40NDl6IE00MDAsMjU0LjQ0OWMxMy4yNTUsMCwyNCwxMC43NDUsMjQsMjRzLTEwLjc0NSwyNC0yNCwyNHMtMjQtMTAuNzQ1LTI0LTI0ICAgICBTMzg2Ljc0NSwyNTQuNDQ5LDQwMCwyNTQuNDQ5eiIgZmlsbD0iI2Y4OGIwMCIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgc3R5bGU9IiI+PC9wYXRoPgoJCQk8Y2lyY2xlIGN4PSI0MDAiIGN5PSIyNzguNDQ5IiByPSIxNiIgZmlsbD0iI2Y4OGIwMCIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgc3R5bGU9IiI+PC9jaXJjbGU+CgkJCTxjaXJjbGUgY3g9Ijk2IiBjeT0iMjc4LjQ0OSIgcj0iMTYiIGZpbGw9IiNmODhiMDAiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIHN0eWxlPSIiPjwvY2lyY2xlPgoJCTwvZz4KCTwvZz4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8L2c+PC9zdmc+"
+                    /></span>
+                    </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title">BEST SKATER</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur dolores voluptas obcaecati quo consequuntur mollitia facilis.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- ===========================IMAGE-SECTION=========================== -->
+
+    <section class="image-section">
+        <div class="row">
+            <div data-aos="fade-right" data-aos-duration="1000" class="col-lg-6 bg-image"> </div>
+            <div data-aos="fade-left" data-aos-duration="1000" class="col-lg-6 ml-auto  text-left text-box">
+                <h2>MY BEST PERFORMANCE</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus id dignissimos nemo minus perspiciatis ullam itaque voluptas iure vero, nesciunt unde odit aspernatur distinctio, maiores facere officiis. Cum, esse, iusto?</p>
+                <p>Minus perspiciatis ullam itaque voluptas iure vero, nesciunt unde odit aspernatur distinctio, maiores facere officiis. Cum, esse, iusto?
+
+                </p>
+                <ul>
+
+                    <li class="mb-3"> <i class="fas fa-check"></i>Lorem ipsum dolor.</li>
+
+                    <li class="mb-3"><i class="fas fa-check"></i>Quod, amet. Provident.</li>
+
+                    <li class="mb-3"><i class="fas fa-check"></i>Quo, adipisci, quis.</li>
+
+                    <li class="mb-3"><i class="fas fa-check"></i>Cumque perspiciatis, blanditiis?</li>
+
+                </ul>
+
+            </div>
+        </div>
+        <div class="row">
+            <div data-aos="fade-right" data-aos-duration="1000" class="col-lg-6 ml-auto  text-left text-box">
+                <h2>MY BEST PERFORMANCE</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus id dignissimos nemo minus perspiciatis ullam itaque voluptas iure vero, nesciunt unde odit aspernatur distinctio, maiores facere officiis. Cum, esse, iusto?</p>
+                <p>Minus perspiciatis ullam itaque voluptas iure vero, nesciunt unde odit aspernatur distinctio, maiores facere officiis. Cum, esse, iusto?
+
+                </p>
+                <ul>
+
+                    <li class="mb-3"> <i class="fas fa-check"></i>Lorem ipsum dolor.</li>
+
+                    <li class="mb-3"><i class="fas fa-check"></i>Quod, amet. Provident.</li>
+
+                    <li class="mb-3"><i class="fas fa-check"></i>Quo, adipisci, quis.</li>
+
+                    <li class="mb-3"><i class="fas fa-check"></i>Cumque perspiciatis, blanditiis?</li>
+
+                </ul>
+            </div>
+            <div data-aos="fade-left" data-aos-duration="1000" class="col-lg-6 bg-image">
+
+
+            </div>
+        </div>
+    </section>
+
+    <!--====================== VIDEO-SECTION======================== -->
+    <section class="video-section">
+        <div class="row">
+            <div class="col-lg-12">
+                <img src="/photo-.jpg" class="d-block w-100" alt="">
+                <span><i class="fas-fa-youtube"></i></span>
+            </div>
+        </div>
+        <div class="row mt-5 data-box text-center mx-auto">
+            <div data-aos="fade-up" data-aos-duration="500" class="col-lg-3">
+                <h1>30+</h1>
+                <div class="down-border"></div>
+                <p>Year of Experience</p>
+            </div>
+            <div data-aos="fade-up" data-aos-duration="1000" class="col-lg-3">
+                <h1>4+</h1>
+                <hr>
+                <p>Expert Trainer</p>
+            </div>
+            <div data-aos="fade-up" data-aos-duration="1500" class="col-lg-3">
+                <h1>4+</h1>
+                <hr>
+                <p>Number of Trainer</p>
+            </div>
+            <div data-aos="fade-up" data-aos-duration="2000" class="col-lg-3">
+                <h1>1500+</h1>
+                <hr>
+                <p>Number of Members</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!--=================== INFO-CARD-SECTION========================= -->
+
+    <section class="info-section">
+
+        <div data-aos="fade-up" data-aos-duration="1000" class="row mb-5">
+            <div class="col-lg-8 text-center mx-auto text">
+                <h1>OUR TEAM
+                </h1>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere at delectus laudantium, deserunt, atque eveniet. Voluptatem, fuga quos rerum inventore.
+
+
+                </p>
+            </div>
+        </div>
+        <div class="row info-card-section">
+            <div data-aos="fade-up" data-aos-duration="500" class="col">
+                <div class="card text-center">
+                    <div class="card-header mt-2">
+                        <img src="/photo-155.jpg" alt="">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">JEAN SMITH</h5>
+                        <p class="card-text">SKATEBOARD TRAINER</p>
+                        <span><a href=""><i class="fab fa-facebook-f px-1"></i></a></span>
+                        <span><a href=""><i class="fab fa-twitter px-1"></i></a></span>
+                        <span><a href=""><i class="fab fa-instagram px-1"></i></a></span>
+                    </div>
+                </div>
+
+            </div>
+            <div data-aos="fade-up" data-aos-duration="1000" class="col">
+                <div class="card text-center">
+                    <div class="card-header mt-2">
+                        <img src="/photo-1560.jpg" alt="">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">JEAN SMITH</h5>
+                        <p class="card-text">SKATEBOARD TRAINER</p>
+                        <span><a href=""><i class="fab fa-facebook-f px-1"></i></a></span>
+                        <span><a href=""><i class="fab fa-twitter px-1"></i></a></span>
+                        <span><a href=""><i class="fab fa-instagram px-1"></i></a></span>
+                    </div>
+                </div>
+            </div>
+            <div data-aos="fade-up" data-aos-duration="1500" class="col">
+                <div class="card text-center">
+                    <div class="card-header mt-2">
+                        <img src="/pexels-photo.jpeg" alt="">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">JEAN SMITH</h5>
+                        <p class="card-text">SKATEBOARD TRAINER</p>
+                        <span><a href=""><i class="fab fa-facebook-f px-1"></i></a></span>
+                        <span><a href=""><i class="fab fa-twitter px-1"></i></a></span>
+                        <span><a href=""><i class="fab fa-instagram px-1"></i></a></span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+    <!--================================= PRICING-SECTION==================================== -->
+
+    <section class="pricing-section">
+        <div class="row">
+            <div class="col price-box text-center">
+                <h3 class="mt-4">BASIC</h3>
+                <h1>$47<span>/year</span></h1>
+
+                <ul class="text-left">
+                    <li class="mb-4"><i class="fas fa-check mr-3"></i>Officia quaerat eaque neque</li>
+                    <li class="mb-4"><i class="fas fa-check mr-3"></i>Possimus aut consequuntur incidunt</li>
+                    <li class="mb-4"><i class="fas fa-check mr-3"></i>Lorem ipsum dolor sit amet</li>
+                    <li class="mb-4"><i class="fas fa-check mr-3"></i>Consectetur adipisicing elit</li>
+                    <li class="mb-4"><i class="fas fa-check mr-3"></i>Dolorum esse odio quas architecto sint</li>
+                </ul>
+                <button class="btn btn-primary">Buy Now</button>
+            </div>
+            <div class="col price-box text-center">
+                <h3 class="mt-4">PREMIUM</h3>
+                <h1>$200<span>/year</span></h1>
+                <ul class="text-left">
+                    <li class="mb-4"><i class="fas fa-check mr-3"></i>Officia quaerat eaque neque</li>
+                    <li class="mb-4"><i class="fas fa-check mr-3"></i>Possimus aut consequuntur incidunt</li>
+                    <li class="mb-4"><i class="fas fa-check mr-3"></i>Lorem ipsum dolor sit amet</li>
+                    <li class="mb-4"><i class="fas fa-check mr-3"></i>Consectetur adipisicing elit</li>
+                    <li class="mb-4"><i class="fas fa-check mr-3"></i>Dolorum esse odio quas architecto sint</li>
+                </ul>
+                <button class="btn btn-primary">Buy Now</button>
+            </div>
+            <div class="col price-box">
+                <h3 class="mt-4">PROFESSIONAL
+                </h3>
+                <h1>$750<span>/year</span></h1>
+                <ul class="text-left">
+                    <li class="mb-4"><i class="fas fa-check mr-3"></i>Officia quaerat eaque neque</li>
+                    <li class="mb-4"><i class="fas fa-check mr-3"></i>Possimus aut consequuntur incidunt</li>
+                    <li class="mb-4"><i class="fas fa-check mr-3"></i>Lorem ipsum dolor sit amet</li>
+                    <li class="mb-4"><i class="fas fa-check mr-3"></i>Consectetur adipisicing elit</li>
+                    <li class="mb-4"><i class="fas fa-check mr-3"></i>Dolorum esse odio quas architecto sint</li>
+                </ul>
+                <button class="btn btn-primary">Buy Now</button>
+            </div>
+        </div>
+    </section>
+
+
+    <!--=========================== QUESTION-SECTION=========================== -->
+    <section class="question-section">
+        <div data-aos="fade-up" data-aos-duration="1000" class="row">
+            <div class="col-lg-8 text-center mx-auto ques-head">
+                <h2>FREQUENTLY ASK QUESTIONS
+                </h2>
+            </div>
+            <div data-aos="fade-up" data-aos-duration="1000" class="row">
+                <div class="col-lg-6">
+                    <h3>CAN I ACCEPT BOTH PAYPAL AND STRIPE?</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam assumenda eum blanditiis perferendis.</p>
+                </div>
+                <div class="col-lg-6">
+                    <h3>WHERE ARE YOU FROM?</h3>
+                    <p>Voluptatum nobis obcaecati perferendis dolor totam unde dolores quod maxime corporis officia et. Distinctio assumenda minima maiores.</p>
+
+                </div>
+            </div>
+            <div data-aos="fade-up" data-aos-duration="1000" class="row">
+                <div class="col-lg-6">
+                    <h3>WHAT AVAILABLE IS REFUND PERIOD?</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam assumenda eum blanditiis perferendis.</p>
+                </div>
+                <div class="col-lg-6">
+                    <h3>WHAT IS YOUR OPENING TIME?</h3>
+                    <p>Voluptatum nobis obcaecati perferendis dolor totam unde dolores quod maxime corporis officia et. Distinctio assumenda minima maiores.</p>
+
+                </div>
+            </div>
+            <div data-aos="fade-up" data-aos-duration="1000" class="row">
+                <div class="col-lg-6">
+                    <h3>CAN I ACCEPT BOTH PAYPAL AND STRIPE?</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam assumenda eum blanditiis perferendis.</p>
+                </div>
+                <div class="col-lg-6">
+                    <h3>CAN I ACCEPT BOTH PAYPAL AND STRIPE?</h3>
+                    <p>Voluptatum nobis obcaecati perferendis dolor totam unde dolores quod maxime corporis officia et. Distinctio assumenda minima maiores.</p>
+
+                </div>
+            </div>
+            <div data-aos="fade-up" data-aos-duration="1000" class="row">
+                <div class="col-lg-6">
+                    <h3>WHAT AVAILABLE IS REFUND PERIOD?</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam assumenda eum blanditiis perferendis.</p>
+                </div>
+                <div class="col-lg-6">
+                    <h3>WHAT AVAILABLE IS REFUND PERIOD?</h3>
+                    <p>Voluptatum nobis obcaecati perferendis dolor totam unde dolores quod maxime corporis officia et. Distinctio assumenda minima maiores.</p>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!--============================== BLOG-SECTION===================== -->
+    <section class="blog-section">
+        <div class="row">
+            <div data-aos="fade-up" data-aos-duration="1000" class="col-lg-8 text-center mx-auto blog-heading">
+                <h6>LATEST BLOG POSTS
+                </h6>
+                <h1 class="mb-5">
+                    OUR BLOG
+
+                </h1>
+            </div>
+        </div>
+        <div class="row">
+            <div data-aos="fade-up" data-aos-duration="1000" class="col-lg-6 blog-image">
+                <img src="/photo-1560.jpg" class="d-block w-100" alt="">
+                <h2><a href="">HOW TO FIND GOLD IN MINING</a></h2>
+                <p>JANUARY 18, 2019 BY <a href="">JAMES COOPER</a></p>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis quidem fugiat voluptas a, delectus autem saepe aliquam totam iste eius est, ducimus similique accusamus corporis cumque quibusdam? Recusandae, dolore incidunt.
+                </p>
+                <h6><a href="#">READ MORE</a></h6>
+            </div>
+            <div data-aos="fade-up" data-aos-duration="1500" class="col-lg-6 blog-image">
+                <img src="/photo-155.jpg" class="d-block w-100" alt="">
+                <h2><a href="">HOW TO FIND GOLD IN MINING</a></h2>
+                <p>JANUARY 18, 2019 BY <a href="">JAMES COOPER</a></p>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis quidem fugiat voluptas a, delectus autem saepe aliquam totam iste eius est, ducimus similique accusamus corporis cumque quibusdam? Recusandae, dolore incidunt.
+                </p>
+                <h6><a href="#">READ MORE</a></h6>
+            </div>
+        </div>
+    </section>
+
+    <!--========================== CONTACT-SECTION=================== -->
+
+    <section class="contact-section">
+        <div class="row contact-heading">
+            <div data-aos="fade-up" data-aos-duration="1000" class="col-lg-8 text-center mx-auto mb-5">
+                <p class="mb-1">GET IN TOUCH</p>
+                <h1>CONTACT ME</h1>
+            </div>
+
+        </div>
+        <div class="row">
+            <div data-aos="fade-up" data-aos-duration="1000" class="col-lg-6">
+                <form action="">
+                    <div class="form-group row">
+                        <div class="col">
+
+                            <input id="f-name" type="text" class="form-control" placeholder="First name">
+                        </div>
+                        <div class="col">
+
+                            <input id="l-name" type="text" class="form-control" placeholder="Last name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <input id="email" type="text" class="form-control" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="8" placeholder="Messagex"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-row">
+                            <button class="btn btn-lg ml-auto">Send message</button>
+                        </div>
+                    </div>
+
+
+
+                </form>
+            </div>
+            <div data-aos="fade-up" data-aos-duration="1500" class="col-lg-6 contact-text">
+                <h2>
+                    NEED TO KNOW MORE ON DETAILS. GET IN TOUCH
+                </h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores, distinctio! Harum quibusdam nisi, illum nulla aspernatur aut quidem aperiam, quae non tempora recusandae voluptatibus fugit impedit.</p>
+                <button class="btn btn-lg">Get Started </button>
+            </div>
+        </div>
+
+    </section>
+
+
+    <!--============================== FOOTER-SECTION================= -->
+    <footer>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="row sub-row">
+                    <div class="col-lg-8">
+                        <h3>ABOUT US</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error magni eveniet facilis tempore eos repudiandae doloribus saepe hic, similique dolorem!</p>
+                    </div>
+                    <div class="col-lg-4">
+                        <h3>FEATURES</h3>
+                        <ul>
+                            <li class="mb-1">About Us</li>
+                            <li class="mb-1">Press Releases</li>
+                            <li class="mb-1">Testimonials</li>
+                            <li class="mb-1">Terms of Service</li>
+                            <li class="mb-1">Privacy</li>
+                            <li class="mb-1">Contact Us</li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 button-box">
+
+            </div>
+        </div>
+    </footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="app.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
+</body>
+
+</html>
