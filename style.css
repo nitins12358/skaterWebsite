@@ -108,6 +108,7 @@
         .image-section .row .bg-image {
             background-image: url(/depositphotos.jpg);
             height: 500px;
+            background-size:cover ;
         }
         
         .image-section .row .text-box {
@@ -161,6 +162,19 @@
         .video-section .data-box p {
             color: white;
             font-size: 0.9rem;
+        }
+
+        .video-thumb{height:500px;
+
+            background:  url(./New_Skater_NHuston.jpg);
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .icon-youtube i{
+           font-size: 50px;
+           color:#fff;
         }
         /* <!--=================== INFO-CARD-SECTION========================= --> */
         
@@ -410,6 +424,44 @@
             transition: 2ms;
         }
         
+           .form-item h6{
+            color:#F88B00;
+            }
+            .sign-form  .form-item h1{
+              font-size: 3rem;
+              font-weight: 700;
+            }
+            .form-group input[type=email]{
+              padding: 20px;
+              background: #fff;
+              border:none;
+              outline:transparent;
+              width:68%;
+              /* margin-left: px; */
+            }
+          
+            .form-box{
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+             .email-form{
+              border:1px solid #F88B00;
+              border-radius: 8px;
+              width:100%;
+              overflow: hidden;
+              background: #fff;
+            }
+            .form-btn{
+              background: #F88B00;
+              color:#fff;
+              float: right;
+              padding:16px 40px;
+              outline: hidden;
+              margin-top: 3px;
+              margin-right: 3px;
+            }
+          
         @media screen and (max-width: 768px) {
             /* body {
         background-color: black;

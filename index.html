@@ -283,9 +283,12 @@
     <!--====================== VIDEO-SECTION======================== -->
     <section class="video-section">
         <div class="row">
-            <div class="col-lg-12">
-                <img src="/photo-.jpg" class="d-block w-100" alt="">
-                <span><i class="fas-fa-youtube"></i></span>
+            <div class="col-lg-12 video-thumb">
+                <div class="icon-youtube">
+                  <a href="https://www.youtube.com"><i class="fab fa-youtube"></i></a>  
+                </div>
+                <!-- <img src="/photo-.jpg" class="d-block w-100" alt=""> -->
+               
             </div>
         </div>
         <div class="row mt-5 data-box text-center mx-auto">
@@ -296,17 +299,17 @@
             </div>
             <div data-aos="fade-up" data-aos-duration="1000" class="col-lg-3">
                 <h1>4+</h1>
-                <hr>
+                <div class="down-border"></div>
                 <p>Expert Trainer</p>
             </div>
             <div data-aos="fade-up" data-aos-duration="1500" class="col-lg-3">
                 <h1>4+</h1>
-                <hr>
+                <div class="down-border"></div>
                 <p>Number of Trainer</p>
             </div>
             <div data-aos="fade-up" data-aos-duration="2000" class="col-lg-3">
                 <h1>1500+</h1>
-                <hr>
+                <div class="down-border"></div>
                 <p>Number of Members</p>
             </div>
         </div>
@@ -590,7 +593,10 @@
                 </div>
             </div>
             <div class="col-lg-6 button-box">
-
+                <form class="form-group email-form" action="/" method="POST">
+                    <input type="email" placeholder="Enter Your Email" name="userEmail" />
+                    <button class="btn form-btn" value="submit">Subscribe</button>
+                  </form>
             </div>
         </div>
     </footer>
